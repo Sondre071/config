@@ -3,8 +3,6 @@ source './psmux/init-psmux.nu'
 source './wezterm/init-wezterm.nu'
 source './zed/init-zed.nu'
 
-## nushell
-
 def main [] {
 
     init-nushell
