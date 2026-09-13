@@ -12,7 +12,7 @@ def main [] {
 }
 
 def create-file [path: string, value?: string] {
-    print $"(ansi yb)file path: (ansi wb)($path)(ansi reset)"
+    print $"(ansi yb)path: (ansi wb)($path)(ansi reset)"
 
     if ($path | path exists) {
         print $"(ansi y)file already exists(ansi reset)"
@@ -35,7 +35,7 @@ def create-file [path: string, value?: string] {
 }
 
 def create-hardlink [source_path: string, link_path: string] {
-    print $"(ansi yb)link path: (ansi wb)($link_path)(ansi reset)"
+    print $"(ansi yb)path: (ansi wb)($link_path)(ansi reset)"
 
     if ($link_path | path exists) {
         print $"(ansi y)link already exists, skipping(ansi reset)\n"
