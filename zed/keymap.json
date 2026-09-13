@@ -1,0 +1,129 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+    {
+        // These should work on every possible panel.
+        // SettingsWindow - this is not covered by the workspace
+        // Picker > Editor - covers pickers with edit fields like text_finder and outline
+        "context": "SettingsWindow || menu || (Picker > Editor)",
+        "bindings": {
+            "ctrl-j": "menu::SelectNext",
+            "ctrl-k": "menu::SelectPrevious",
+        },
+    },
+    {
+        "context": "Pane",
+        "bindings": {
+            "ctrl-shift-h": "pane::ActivatePreviousItem",
+            "ctrl-shift-j": "pane::CloseActiveItem",
+            "ctrl-shift-k": "pane::ReopenClosedItem",
+            "ctrl-shift-l": "pane::ActivateNextItem",
+        },
+    },
+    {
+        "context": "(!Editor || VimControl) && !menu",
+        "bindings": {
+            // UI
+            "space e": "workspace::ToggleLeftDock",
+
+            // File
+            "space f f": "file_finder::Toggle",
+            "space f g": "buffer_search::Deploy",
+            "space f o": "outline::Toggle",
+            "space f p": "workspace::CopyPath",
+            "space y": "editor::Copy",
+            "space p": "editor::Paste",
+
+            // Workspace
+            "space g g": "workspace::NewSearch",
+            "space g s": "text_finder::Toggle",
+            "space g o": "project_symbols::Toggle",
+        },
+    },
+    // Unbinds
+    {
+        "context": "Empty",
+    },
+    {
+        "context": "Workspace",
+        "unbind": {
+            "ctrl-shift-h": [
+                "pane::DeploySearch",
+                {
+                    "replace_enabled": true,
+                },
+            ],
+        },
+    },
+    {
+        "context": "ProjectSearchBar",
+        "unbind": {
+            "ctrl-shift-h": "search::ToggleReplace",
+        },
+    },
+    {
+        "context": "ProjectSearchView",
+        "unbind": {
+            "ctrl-shift-h": "search::ToggleReplace",
+        },
+    },
+    {
+        "context": "Terminal",
+        "unbind": {
+            "ctrl-shift-l": "terminal::Clear",
+        },
+    },
+    {
+        "context": "Editor",
+        "unbind": {
+            "ctrl-shift-l": "editor::SelectAllMatches",
+        },
+    },
+    {
+        "context": "Editor",
+        "unbind": {
+            "ctrl-shift-j": "editor::JoinLines",
+        },
+    },
+    {
+        "context": "Editor",
+        "unbind": {
+            "ctrl-shift-k": "editor::DeleteLine",
+        },
+    },
+    {
+        "context": "TextFinder || TextFinder > Picker > Editor || TextFinder > Picker > menu",
+        "unbind": {
+            "ctrl-j": "pane::SplitDown",
+        },
+    },
+    {
+        "context": "FileFinder || FileFinder > Picker > Editor || FileFinder > Picker > menu",
+        "unbind": {
+            "ctrl-j": "pane::SplitDown",
+        },
+    },
+    {
+        "context": "Workspace",
+        "unbind": {
+            "ctrl-j": "workspace::ToggleBottomDock",
+        },
+    },
+    {
+        "context": "VimControl && !menu",
+        "unbind": {
+            "ctrl-j": "vim::Down",
+        },
+    },
+    {
+        "context": "VimControl && !menu",
+        "unbind": {
+            "space": "vim::WrappingRight",
+        },
+    },
+]
