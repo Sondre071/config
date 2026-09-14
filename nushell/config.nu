@@ -33,4 +33,23 @@ const NU_LIB_DIRS = [
   '~/Dev/NuModules/DokflytCLI'
 ]
 
-use dokflyt-cli.nu df
+use dokflyt-cli.nu [ df df-local df-sql ]
+
+# Prevent using npm without aikido safe-chain
+def npm [...args] {
+    error make {
+        msg: "Execution Blocked: npm is banned on this shell profile."
+    }
+}
+
+def pnpm [...args] {
+    error make {
+        msg: "Execution Blocked: npm is banned on this shell profile."
+    }
+}
+
+def npx [...args] {
+    error make {
+        msg: "Execution Blocked: npm is banned on this shell profile."
+    }
+}
