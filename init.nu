@@ -1,10 +1,11 @@
+source './intellij/init-intellij.nu'
 source './nushell/init-nushell.nu'
 source './psmux/init-psmux.nu'
 source './wezterm/init-wezterm.nu'
 source './zed/init-zed.nu'
 
 def main [] {
-
+    init-intellij
     init-nushell
     init-psmux
     init-wezterm

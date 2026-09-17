@@ -1,0 +1,30 @@
+let mapleader = " "
+set timeoutlen=1000
+set clipboard=unnamed,unnamedplus
+
+" -- workspace / dock --
+nmap <leader>e :action ActivateProjectToolWindow<CR>
+
+
+" -- file-wide --
+nmap <leader>ff :action GotoFile<CR>
+nmap <leader>fg :action Find<CR>
+nmap <leader>fo :action FileStructurePopup<CR>
+nmap <leader>fp :action CopyPaths<CR>
+nmap <leader>fr :action RecentFiles<CR>
+vmap <leader>y :action EditorCopy<CR>
+nmap <leader>p :action EditorPaste<CR>
+
+
+" -- project-wide --
+nmap <leader>gg :action FindInPath<CR>
+nmap <leader>go :action GotoSymbol<CR>
+nmap <leader>or :action RenameElement<CR>
+nmap <leader>gi :action GotoImplementation<CR>
+nmap <leader>gd :action GotoDeclaration<CR>
+nmap <leader>gu :action ShowUsages<CR>
+
+" -- scope-wide --
+nmap <leader>sj :action MethodDown<CR>
+nmap <leader>sk :action MethodUp<CR>
+
