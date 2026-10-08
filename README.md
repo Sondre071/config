@@ -1,14 +1,22 @@
 # All my configs
 
-## NuShell
+## How to use
 
-### Install
+Run `init.nu` using NuShell
+
+## Prerequisites
+
+### Developer mode
+
+Turn on _developer mode_ within Windows System Settings to allow the script to create symlinks.
+
+### Install NuShell
 
 ```shell
 scoop install nu
 ```
 
-### Enable easy file invocation
+### Enable NuShell easy file invocation
 
 To allow native invocation and skip the `nu` keyword, run this within Administrator Command Prompt:
 
@@ -17,9 +25,7 @@ assoc .nu=NushellScript
 ftype NushellScript="C:\Path\To\Your\nu.exe" "%1" %*
 ```
 
-## psmux
-
-### Install
+### Install psmux
 
 ```shell
 scoop bucket add psmux https://github.com/psmux/scoop-psmux
