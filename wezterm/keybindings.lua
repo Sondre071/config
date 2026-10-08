@@ -12,7 +12,7 @@ end
 
 local M = {}
 
-function M.build_keys(show_script_picker_fn, show_favorite_paths_picker_fn)
+function M.build_keys()
     return {
 
         -- Switch key table
@@ -42,25 +42,10 @@ function M.build_keys(show_script_picker_fn, show_favorite_paths_picker_fn)
 
         -- Menus
         {
-            key = "F1",
-            action = act.ActivateCommandPalette,
-        },
-        {
-            key = "F2",
-            action = wezterm.action_callback(function(window, pane)
-                if not is_nvim(pane) then
-                    show_script_picker_fn(window, pane)
-                end
-            end),
-        },
-        {
-            key = "F3",
-            action = wezterm.action_callback(function(window, pane)
-                if not is_nvim(pane) then
-                    show_favorite_paths_picker_fn(window, pane)
-                end
-            end),
-        },
+			key = "F1",
+			mods = "SHIFT",
+			action = act.ActivateCommandPalette,
+		},
         {
             key = "d",
             mods = "CTRL|SHIFT",

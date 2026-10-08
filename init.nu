@@ -1,60 +1,80 @@
-source './intellij/init-intellij.nu'
-source './nushell/init-nushell.nu'
-source './psmux/init-psmux.nu'
-source './wezterm/init-wezterm.nu'
-source './zed/init-zed.nu'
+const project_dir = path self | path dirname
 
 def main [] {
-    init-intellij
-    init-nushell
-    init-psmux
-    init-wezterm
-    init-zed
-}
-
-def create-file [path: string, value?: string] {
-    print $"(ansi yb)path: (ansi wb)($path)(ansi reset)"
-
-    if ($path | path exists) {
-        print $"(ansi y)file already exists(ansi reset)"
-    }
-
-    let approve = (input 'proceed? y/n: ') =~ '^(?i:y)$'
-
-    if $approve {
-        let parent_dir = $path | path dirname
-        if not ($parent_dir | path exists) {
-            mkdir $parent_dir
+    let configs = [
+        {
+            name: intellij
+            target_dir: $env.USERPROFILE
         }
-        
-        $value | save -f $path
-
-        print $"(ansi y)created file: (ansi w)($path)(ansi reset)\n"
-    } else {
-        print $"(ansi y)did not file: (ansi w)($path)(ansi reset)\n"
-    }
-}
-
-def create-hardlink [source_path: string, link_path: string] {
-    print $"(ansi yb)path: (ansi wb)($link_path)(ansi reset)"
-
-    if ($link_path | path exists) {
-        print $"(ansi y)link already exists, skipping(ansi reset)\n"
-        return
-    }
-
-    let approve = (input 'proceed? y/n: ') =~ '^(?i:y)$'
-
-    if $approve {
-        let parent_dir = $link_path | path dirname
-        if not ($parent_dir | path exists) {
-            mkdir $parent_dir
+        {
+            name: nushell
+            target_dir: (
+                $env.USERPROFILE
+                | path join '.config' '.nushell'
+            )
         }
-        
-        ^mklink /H $link_path $source_path
-        print "\n"
-    } else {
-        print $"(ansi y)did not link: (ansi w)($link_path)(ansi reset)\n"
-    }
-}
+        {
+            name: psmux
+            target_dir: $env.USERPROFILE
+        }
+        {
+            name: terminal
+            target_dir: (
+                $env.USERPROFILE
+                | path join '.config' 'terminal'
+            )
+        }
+        {
+            name: wezterm
+            target_dir: (
+                $env.USERPROFILE
+                | path join '.config' 'wezterm'
+            )
+        }
+        {
+            name: zed
+            target_dir: (
+                $env.USERPROFILE
+                | path join 'AppData' 'Roaming' 'Zed'
+            )
+        }
+    ]
 
+    $configs
+    | each {|con|
+        print $"(ansi yellow_bold)--- Inititalizing: (ansi white)($con.name) (ansi yellow)---(ansi reset)"
+
+        let root_dir = $project_dir | path join $con.name
+        let target_dir = $con.target_dir
+
+        ls $"($root_dir)/**/*"
+        | where type == file
+        | each {|file|
+            let source_path = $file.name
+            let relative_path = $source_path | path relative-to $root_dir
+            let link_path = $target_dir | path join $relative_path
+
+            let parent_dir = $link_path | path dirname
+
+            if not ($parent_dir | path exists) {
+                mkdir $parent_dir
+            }
+
+            if not ($link_path | path exists --no-symlink) {
+                ^mklink $link_path $source_path | ignore
+                print $"(ansi green)Symlink created: (ansi white)($relative_path)(ansi reset)"
+            } else {
+                print $"(ansi yellow)Symlink already exists: (ansi white)($relative_path)(ansi reset)"
+            }
+        }
+
+        let extra_init = $root_dir | path join '.extras' 'init.nu'
+
+        if ($extra_init | path exists) {
+            nu $extra_init
+        }
+
+        print ''
+    }
+    | ignore
+}

@@ -1,8 +1,6 @@
 local wezterm = require("wezterm")
 
 local keybindings = require("keybindings")
-local scripts = require("scripts")
-local favorite_paths = require("favorite_paths")
 local background = require("background")
 local color_theme = require("color_theme")
 
@@ -43,7 +41,7 @@ config.inactive_pane_hsb = {
 config.background = background.load()
 
 -- Keybindings
-config.keys = keybindings.build_keys(scripts.show_picker, favorite_paths.show_picker)
+config.keys = keybindings.build_keys()
 config.key_tables = keybindings.build_key_tables()
 
 return config
