@@ -1,5 +1,3 @@
--- Keymaps
-
 -- Indentation
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.shiftwidth = 4 -- Number of spaces for auto-indent
@@ -17,6 +15,10 @@ local function set_user_var(name, value)
     io.write(string.format("\027]1337;SetUserVar=%s=%s\007", name, vim.base64.encode(value)))
 end
 
+-- Theme
+vim.cmd.colorscheme("lunaperche")
+
+-- Tab state - Used to manage keybindings in WezTerm
 vim.api.nvim_create_autocmd("VimEnter", {
     once = true,
     callback = function()
@@ -47,3 +49,4 @@ vim.o.shellpipe = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
 -- Setting shell quote options
 vim.o.shellquote = ""
 vim.o.shellxquote = ""
+
