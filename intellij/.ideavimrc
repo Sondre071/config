@@ -2,6 +2,9 @@ let mapleader = " "
 set timeoutlen=1000
 set clipboard=unnamed,unnamedplus
 
+set ignorecase
+set smartcase
+
 " -- workspace / dock --
 nmap <leader>e :action ActivateProjectToolWindow<CR>
 
