@@ -1,0 +1,1 @@
+rg --glob-case-insensitive -g '*.cs' -g '!*Migrations*' -g '!*backoffice*' -i 'Copy'
