@@ -10,7 +10,7 @@ def main [] {
             name: nushell
             target_dir: (
                 $env.USERPROFILE
-                | path join '.config' '.nushell'
+                | path join '.config' 'nushell'
             )
         }
         {
