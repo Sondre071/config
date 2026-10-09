@@ -14,6 +14,13 @@ def main [] {
             )
         }
         {
+            name: nvim
+            target_dir: (
+                $env.USERPROFILE
+                | path join '.config' 'nvim'
+            )
+        }
+        {
             name: psmux
             target_dir: $env.USERPROFILE
         }

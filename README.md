@@ -25,6 +25,10 @@ assoc .nu=NushellScript
 ftype NushellScript="C:\Path\To\Your\nu.exe" "%1" %*
 ```
 
+### NeoVim config path
+
+Set the environment variable `XDG_CONFIG_HOME` to: `C:/.../.config`
+
 ### Install psmux
 
 ```shell
