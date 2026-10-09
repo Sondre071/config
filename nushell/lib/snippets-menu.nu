@@ -20,6 +20,15 @@ export def main [] {
         return
     }
 
-    open --raw $path
+    let content = open --raw $path
+    
+    # TO-DO
+    # if $content =~ '<|@w+|>' {
+    #   find matches and prompt the user to place in each value
+    #   then place each value into its spot, copy to clipboard
+    #   For example, a script can have a placeholder like: WHERE TenantId = <|@TenantId|>
+    # }
+    
+    $content
     | clip copy
 }
