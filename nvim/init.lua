@@ -1,4 +1,7 @@
 -- Indentation
+
+vim.cmd("filetype indent off") -- No file-specific rules.
+
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.shiftwidth = 4 -- Number of spaces for auto-indent
 vim.opt.tabstop = 4 -- Number of spaces a tab counts for
