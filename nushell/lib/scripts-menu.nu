@@ -2,22 +2,41 @@ export def main [] {
     const scripts_path = '~/.config/terminal/scripts'
     | path expand
 
-    # ls the path and one level down
-    let files = ls ...[ $scripts_path $"($scripts_path)/*/*" ]
-    | where ($it.name | str ends-with '.nu') 
+    let files = ls $"($scripts_path)/*/*" 
+    | where ($it.name | str ends-with '.nu')
 
-    let path = $files
-    | rename --column { name: path }
-    | insert name {|row|
-        $row.path
-        | path basename
+    let dirname_pad_length = $files
+    | get name
+    | path dirname
+    | path basename
+    | str length
+    | math max
+
+    let entries = $files
+    | each {|file|
+        let name = do {
+            let prefix = $file.name
+            | path dirname
+            | path basename
+            | fill --alignment l --character ' ' --width ($dirname_pad_length)
+
+            let file_name = $file.name
+            | path basename
+
+            $"($prefix) / ($file_name)"
+        }
+
+        { name: $name path: $file.name }
     }
-    | (tui split --sizes [40% 1fr]
+
+    let script_path = $entries
+    | (
+        tui split --sizes [40% 1fr]
         [
             (
                 tui split --vertical --sizes [3 1fr] [
                     (tui search --focus --columns [name])
-                    (tui table --columns [name size])
+                    (tui table --columns [name])
                 ]
             )
             (
@@ -29,9 +48,9 @@ export def main [] {
     | get selected
     | get -o path
 
-    if ($path | is-empty) {
+    if ($script_path | is-empty) {
         return
     }
 
-    commandline edit $path --accept
+    commandline edit $script_path --accept
 }
