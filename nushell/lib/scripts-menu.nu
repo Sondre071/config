@@ -18,7 +18,7 @@ export def main [] {
             let prefix = $file.name
             | path dirname
             | path basename
-            | fill --alignment l --character ' ' --width ($dirname_pad_length)
+            | fill --alignment l --character ' ' --width $dirname_pad_length
 
             let file_name = $file.name
             | path basename

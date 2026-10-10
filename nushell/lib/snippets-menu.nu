@@ -2,25 +2,56 @@ export def main [] {
     const snippets_path = '~/.config/terminal/snippets'
     | path expand
 
-    let path = ls $snippets_path
-    | rename --column { name: path }
-    | insert name {|row|
-        $row.path
-        | path basename
+    let files = ls $"($snippets_path)/*/*" 
+
+    let dirname_pad_length = $files
+    | get name
+    | path dirname
+    | path basename
+    | str length
+    | math max
+
+    let entries = $files
+    | each {|file|
+        let name = do {
+            let prefix = $file.name
+            | path dirname
+            | path basename
+            | fill --alignment l --character ' ' --width $dirname_pad_length
+            
+            let file_name = $file.name
+            | path basename
+
+            $"($prefix) / ($file_name)"
+        }
+
+        { name: $name path: $file.name }
     }
-    | (tui split --sizes [40% 1fr]
-            [(tui table --columns [name size])
-            (tui preview {|row| open $row.path})]
+
+    let snippet_path = $entries
+    | (
+        tui split --sizes [40% 1fr]
+        [
+            (
+                tui split --vertical --sizes [3 1fr] [
+                    (tui search --focus --columns [name])
+                    (tui table --columns [name])
+                ]
+            )
+            (
+                tui preview {|row| open $row.path}
+            )
+        ]
     )
     | tui run
     | get selected
     | get -o path
 
-    if ($path | is-empty) {
+    if ($snippet_path | is-empty) {
         return
     }
 
-    let content = open --raw $path
+    let content = open --raw $snippet_path
     
     # TO-DO
     # if $content =~ '<|@w+|>' {
