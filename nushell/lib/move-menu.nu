@@ -3,8 +3,22 @@ export def main [] {
     | path expand
 
     let path = open $favorite_paths_path
-    | lines
-    | input list --fuzzy 'Move to path'
+    | (
+        tui split --sizes [40% 1fr]
+        [
+            (
+                tui split --vertical --sizes [3 1fr] [
+                    (tui search --focus)
+                    (tui table)
+                ]
+            )
+            (
+                tui preview {|row| ls $row | get name | str join "\n"}
+            )
+        ]
+    )
+    | tui run
+    | get selected
 
     if ($path | is-empty) {
         return
