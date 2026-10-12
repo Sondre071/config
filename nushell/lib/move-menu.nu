@@ -13,7 +13,14 @@ export def main [] {
                 ]
             )
             (
-                tui preview {|row| ls $row | get name | str join "\n"}
+                tui preview {|row|
+                    let dir = $row
+
+                    ls $dir
+                    | get name
+                    | path relative-to $dir
+                    | str join "\n"
+                }
             )
         ]
     )
