@@ -52,5 +52,5 @@ export def main [] {
         return
     }
 
-    commandline edit $script_path --accept
+    commandline edit $"nu --experimental-options native-clip ($script_path)" --accept
 }
