@@ -6,10 +6,14 @@ local color_theme = require("color_theme")
 
 local config = wezterm.config_builder()
 
+wezterm.add_to_config_reload_watch_list(
+  wezterm.home_dir .. '/.config/terminal/background.json'
+)
+
 -- Window
 config.initial_cols = 120
 config.initial_rows = 34
---config.window_decorations = "RESIZE"
+config.window_decorations = "RESIZE"
 config.default_prog = { "nu", "--experimental-options", "native-clip" }
 config.window_padding = { left = 8, right = 8, top = 8, bottom = 8 }
 config.window_close_confirmation = "NeverPrompt"
