@@ -3,6 +3,22 @@ const project_dir = path self | path dirname
 def main [] {
     let configs = [
         {
+            name: autohotkey
+            target_dir: (
+                [
+                    $env.USERPROFILE
+                    'AppData'
+                    'Roaming'
+                    'Microsoft'
+                    'Windows'
+                    'Start Menu'
+                    'Programs'
+                    'Startup'
+                ]
+                | path join
+            )
+        }
+        {
             name: intellij
             target_dir: $env.USERPROFILE
         }
