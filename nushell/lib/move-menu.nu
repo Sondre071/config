@@ -31,5 +31,5 @@ export def main [] {
         return
     }
 
-    commandline edit $"cd ($path)" --accept
+    commandline edit $"cd '($path)'" --accept
 }
