@@ -21,6 +21,9 @@
 {
     if ProcessExist("Discord.exe")
         WinActivate "ahk_exe Discord.exe"
+
+    else if WinExist("Slack")
+        WinActivate()
 }
 
 #s::
@@ -37,10 +40,36 @@
         Run "C:\Users\SirCi\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Zed\Zed"
 }
 
+#d::
+{
+    if ProcessExist("Linear.exe")
+    {
+        try {
+            WinActivate "ahk_exe Linear.exe"
+        }
+    }
+}
+
 #f::
 {
     if WinExist("ahk_class Chrome_WidgetWin_1")
         WinActivate "ahk_exe Spotify.exe"
+}
+
+#r::
+{
+    if ProcessExist("rider64.exe")
+    {
+        try {
+            WinActivate("ahk_exe rider64.exe")
+        }
+    }
+}
+
+#o::
+{
+    if WinExist("Obsidian Vault")
+        WinActivate()
 }
 
 ; Caps lock, macro system
