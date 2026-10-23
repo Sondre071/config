@@ -85,7 +85,7 @@ capsUsed := false
     capsUsed := false
 
     ; Wait until released or held for one second
-    if !KeyWait("CapsLock", "T0.5") {
+    if !KeyWait("CapsLock", "T0.20") {
         ; Only toggle Caps Lock if no macro was used
         if !capsUsed {
             SetCapsLockState(
