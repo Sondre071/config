@@ -41,6 +41,10 @@ def main [] {
             target_dir: $env.USERPROFILE
         }
         {
+            name: ripgrep
+            target_dir: $env.USERPROFILE
+        }
+        {
             name: terminal
             target_dir: (
                 $env.USERPROFILE

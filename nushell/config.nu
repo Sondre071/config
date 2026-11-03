@@ -89,6 +89,8 @@ $env.config.keybindings = [
     }
 ]
 
+$env.RIPGREP_CONFIG_PATH = ($env.USERPROFILE | path join ".ripgreprc")
+
 def npm [...$args] {
     error make "Not implemented. Run PowerShell instead."
 }
