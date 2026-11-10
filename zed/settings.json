@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "copilot": {},
     "focus_follows_mouse": {
         "enabled": false,
     },
@@ -1383,7 +1384,6 @@
         //   "proxy_no_verify": false
         // },
         "copilot": {
-            "enterprise_uri": null,
             "proxy": null,
             "proxy_no_verify": null,
         },
