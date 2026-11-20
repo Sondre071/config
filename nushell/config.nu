@@ -107,5 +107,4 @@ const NU_LIB_DIRS = [
   '~/Dev/NuModules/DokflytCLI'
 ]
 
-use dokflyt-cli.nu [ df df-local df-sql ]
-
+use dokflyt-cli.nu [ df df-local df-sql df-local-sql ]
