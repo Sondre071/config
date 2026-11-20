@@ -34,7 +34,7 @@ $env.PROMPT_INDICATOR_VI_NORMAL = ': '
 $env.PROMPT_INDICATOR_VI_INSERT = '> '
 $env.PROMPT_MULTILINE_INDICATOR = ': '
 
-$env.config.keybindings = [
+$env.config.keybindings ++= [
     {
         name: 'scripts-menu'
         modifier: 'none'
