@@ -52,5 +52,5 @@ export def main [] {
         return
     }
 
-    commandline edit $"nu --experimental-options native-clip ($script_path)" --accept
+    commandline edit $"nu --config $nu.config-path ($script_path)" --accept
 }
