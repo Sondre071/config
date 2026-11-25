@@ -6,6 +6,7 @@ local color_theme = require("color_theme")
 
 local config = wezterm.config_builder()
 
+-- Update background automatically, at runtime
 wezterm.add_to_config_reload_watch_list(
   wezterm.home_dir .. '/.config/terminal/background.json'
 )
@@ -49,3 +50,4 @@ config.keys = keybindings.build_keys()
 config.key_tables = keybindings.build_key_tables()
 
 return config
+
