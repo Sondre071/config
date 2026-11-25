@@ -18,12 +18,19 @@ scoop install nu
 
 ### Enable NuShell easy file invocation
 
-To allow native invocation and skip the `nu` keyword, run this within Administrator Command Prompt:
+To skip the `nu` keyword and inject env config, run this within Administrator Command Prompt:
 
 ```cmd
 assoc .nu=NushellScript
-ftype NushellScript="C:\Path\To\Your\nu.exe" "%1" %*
+ftype NushellScript="C:\Path\To\nu.exe" --env-config "C:\Path\To\env.nu" "%1" %*
 ```
+
+nu.exe is found by running:
+`which nu`
+
+config path is found by running:
+`$nu.config-path`
+
 
 ### NeoVim config path
 
