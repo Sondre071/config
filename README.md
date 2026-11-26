@@ -20,7 +20,7 @@ scoop install nu
 
 ### Enable NuShell easy file invocation
 
-To skip the `nu` keyword and inject env config into scripts, run this within Administrator Command Prompt:
+To skip the `nu` keyword and inject nu config into scripts, run this within Administrator Command Prompt:
 
 ```cmd
 assoc .nu=NushellScript
