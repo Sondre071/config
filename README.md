@@ -2,6 +2,8 @@
 
 ## How to use
 
+Clone into C:/Users/MyUser/.config/
+
 Run `init.nu` using NuShell
 
 ## Prerequisites
@@ -18,7 +20,7 @@ scoop install nu
 
 ### Enable NuShell easy file invocation
 
-To skip the `nu` keyword and inject env config, run this within Administrator Command Prompt:
+To skip the `nu` keyword and inject env config into scripts, run this within Administrator Command Prompt:
 
 ```cmd
 assoc .nu=NushellScript
